@@ -2,22 +2,22 @@ package sqs.java.receive;
 
 import com.amazonaws.services.sqs.AmazonSQS;
 import com.amazonaws.services.sqs.AmazonSQSClientBuilder;
-import com.amazonaws.services.sqs.model.SendMessageRequest;
-import com.amazonaws.services.sqs.AmazonSQS;
-import com.amazonaws.services.sqs.AmazonSQSClientBuilder;
-import com.amazonaws.services.sqs.model.AmazonSQSException;
-import com.amazonaws.services.sqs.model.CreateQueueResult;
+
 import com.amazonaws.services.sqs.model.Message;
-import com.amazonaws.services.sqs.model.SendMessageBatchRequest;
-import com.amazonaws.services.sqs.model.SendMessageBatchRequestEntry;
-import com.amazonaws.services.sqs.model.SendMessageRequest;
+
+import com.amazonaws.services.lambda.runtime.Context;
+import com.amazonaws.services.lambda.runtime.RequestHandler;
+import com.amazonaws.services.lambda.runtime.events.SQSEvent;
+import com.amazonaws.services.lambda.runtime.events.SQSEvent.SQSMessage;
 import java.util.Date;
 import java.util.List;
 
-public class sqsReceiver {
-    public static void receiver(){
+public class sqsReceiver implements RequestHandler<SQSEvent, Void>{
 
-        String queueUrl = "https://sqs.us-west-2.amazonaws.com/999798490139/QueueA";
+    @Override
+    public Void handleRequest(SQSEvent event, Context contex){
+
+        String queueUrl = "https://sqs.us-west-2.amazonaws.com/999798490139/QueueC";
         final AmazonSQS sqs = AmazonSQSClientBuilder.defaultClient();
 
         // receive messages from the queue
@@ -25,9 +25,11 @@ public class sqsReceiver {
 
 
         // delete messages from the queue
-        for (Message m : messages) {
-            System.out.println(m.getBody());
-            sqs.deleteMessage(queueUrl, m.getReceiptHandle());
+
+        for(SQSMessage msg : event.getRecords()){
+            System.out.println(new String(msg.getBody()));
         }
+
+        return null;
     }
 }

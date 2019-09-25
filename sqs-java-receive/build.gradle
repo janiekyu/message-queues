@@ -33,9 +33,25 @@ dependencies {
     implementation 'com.amazonaws:aws-java-sdk-s3'
     testCompile group: 'junit', name: 'junit', version: '4.11'
     compile group: 'com.amazonaws', name: 'aws-java-sdk-sqs', version: '1.9.0'
+    compile 'com.amazonaws:aws-lambda-java-core:1.2.0'
+    compile 'com.amazonaws:aws-lambda-java-events:2.2.6'
 }
 
 application {
     // Define the main class for the application
     mainClassName = 'sqs.java.receive.App'
 }
+
+task buildZip(type: Zip) {
+    from compileJava
+    from processResources
+    into('lib') {
+        from configurations.runtimeClasspath
+    }
+}
+
+build.dependsOn buildZip
+
+//apply plugin: 'java'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
