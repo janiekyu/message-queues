@@ -6,9 +6,9 @@ For this lab, I created 3 Lambda functions that recieves messages from three dif
 
 ## Screenshots
 
-![test]()
+![test](https://github.com/janiekyu/message-queues/blob/master/assets/test.png)
 
-![Logs]()
+![Logs](https://github.com/janiekyu/message-queues/blob/master/assets/logs.png)
 
 # Lab 36: SQS - Message Queues
 
