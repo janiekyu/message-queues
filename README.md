@@ -6,7 +6,11 @@ For this lab, I created 3 Lambda functions that recieves messages from three dif
 
 ## Screenshots
 
+### Successful test of Lambda function
+
 ![test](https://github.com/janiekyu/message-queues/blob/master/assets/test.png)
+
+### Cloudwatch logs 
 
 ![Logs](https://github.com/janiekyu/message-queues/blob/master/assets/logs.png)
 
