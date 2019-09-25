@@ -5,8 +5,8 @@ package sqs.java.receive;
 
 public class App {
     public static void main(String[] args) {
-        while (true) {
-            sqsReceiver.receiver();
-        }
+
+
+
     }
 }
